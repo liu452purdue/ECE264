@@ -92,14 +92,128 @@ void test_01_arrayCountNegative()
     printf("\n");
 }
 
+void test_arrayIsIncreasing(int * array, int len, int expected)
+{
+    printArray(array, len);
+    int result = arrayIsIncreasing(array,len); 
+    printf(". result = %d, expected = %d.", result, expected);
+    if(result != expected)
+    printf(" FAIL");
+    printf("\n");
+}
+
+void test_02_arrayIsIncreasing()
+{
+    printf("Testing arrayIsIncreasing(...)\n");
+
+    int array1[] = { 1, 4, -5, 4 };
+    int len1 = 4;
+    test_arrayIsIncreasing(array1, len1, 0);
+
+    int array2[] = {};
+    int len2 = 0;
+    test_arrayIsIncreasing(array2, len2, 1);
+
+    int array3[] = { 0, 1, 2, 3, 4 };
+    int len3 = 5;
+    test_arrayIsIncreasing(array3, len3, 1);
+
+    int array4[] = { -3, 2, 4 };
+    int len4 = 3;
+    test_arrayIsIncreasing(array4, len4, 1);
+
+    // You can add more test-cases here
+    // ...
+
+    printf("\n");
+}
+
+void test_arrayIndexRFind(int needle, int * haystack, int len, int expected)
+{
+    printArray(haystack, len);
+    int result = arrayIndexRFind(needle,haystack,len); 
+    printf(". result = %d, expected = %d.", result, expected);
+    if(result != expected)
+    printf(" FAIL");
+    printf("\n");
+}
+
+void test_03_arrayIndexRFind()
+{
+    printf("Testing arrayIndexRFind(...)\n");
+    
+    int needle1 = 0; 
+    int array1[] = { 1, 4, -5, 4 };
+    int len1 = 4;
+    test_arrayIndexRFind(needle1, array1, len1, -1);
+
+    int needle2 = 1;
+    int array2[] = {};
+    int len2 = 0;
+    test_arrayIndexRFind(needle2, array2,len2, -1);
+
+    int needle3 = 2;
+    int array3[] = { 0, 1, 2, 2, 4 };
+    int len3 = 5;
+    test_arrayIndexRFind(needle3, array3, len3, 3);
+
+    int needle4 = 3;
+    int array4[] = { 0, 1, 2, 3, 4 };
+    int len4 = 5;
+    test_arrayIndexRFind(needle4, array4, len4, 3);
+
+    // You can add more test-cases here
+    // ...
+
+    printf("\n");
+}
+
+void test_arrayFindSmallest(int * array, int len, int expected)
+{
+    printArray(array, len);
+    int result = arrayFindSmallest(array,len); 
+    printf(". result = %d, expected = %d.", result, expected);
+    if(result != expected)
+    printf(" FAIL");
+    printf("\n");
+}
+
+void test_04_arrayFindSmallest()
+{
+    printf("Testing arrayFindSmallest(...)\n");
+
+    int array1[] = { 1, 4, -5, 4 };
+    int len1 = 4;
+    test_arrayFindSmallest(array1, len1, 2);
+
+    int array2[] = {};
+    int len2 = 0;
+    test_arrayFindSmallest(array2, len2, 0);
+
+    int array3[] = { 0, 1, 2, 3, 4 };
+    int len3 = 5;
+    test_arrayFindSmallest(array3, len3, 0);
+
+    int array4[] = { 3, -2, 4 };
+    int len4 = 3;
+    test_arrayFindSmallest(array4, len4, 1);
+
+    // You can add more test-cases here
+    // ...
+
+    printf("\n");
+}
+
 int main(int argc, char * * argv)
 {
     printf("Welcome to ECE264, we are working on PA01.\n\n");
 
     // Uncomment to run two example (incomplete) testcases.
-    //test_00_arraySum();
-    //test_01_arrayCountNegative();
-
+    test_00_arraySum();
+    test_01_arrayCountNegative();
+    test_02_arrayIsIncreasing();
+    test_03_arrayIndexRFind();
+    test_04_arrayFindSmallest();
     return EXIT_SUCCESS;
 }
 
