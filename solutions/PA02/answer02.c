@@ -1,3 +1,7 @@
+#include <stdlib.h>
+#include "answer02.h"
+
+ 
 /** 
  * Length of C string 'str', excluding the terminating null byte ('\0')
  * 
@@ -7,11 +11,15 @@
  * my_strlen(NULL); // error -- undefined behavior. You do not need to 
  *                  // consider this case. See the README -- FAQ for more info.
  */
-size_t my_strlen(const char * str) {
-	int pos = -1;
-	while(str[++pos] != '\0') {}
-	return pos;
-}
+size_t my_strlen(const char * str)
+{
+ 	int ind = 0;
+ 	while (str[ind] != '\0')
+ 	{
+ 		ind++ ;
+ 	}
+   return ind;
+ }
 
 /**
  * Count the number of occurrences of character 'ch' in C string 'str'
@@ -19,19 +27,23 @@ size_t my_strlen(const char * str) {
  * Examples: 
  * my_countchar("foo", 'o'); // 2
  */
-int my_countchar(const char * str, char ch) {
-	int n = 0;
-	int pos = -1;
-	while(str[++pos] != '\0') {
-		if(str[pos] == ch) {
-			n++;
-		}
+int my_countchar(const char * str, char ch)
+{
+	int ind = 0;
+	int cnt = 0;
+	while (str[ind] != '\0')
+	{
+		
+        if (str[ind] == ch)
+        {
+        	cnt ++;
+        }
+	ind ++;
 	}
-	return n;
+	return cnt;
 }
-
 /**
- * Return a pointer to the first occurance of character 'ch' in C string 'str'
+ * Return a pointer to the first occurrence of character 'ch' in C string 'str'
  * Return NULL if 'ch' is not found.
  *
  * Note that the terminating '\0' character is considered to be part of the 
@@ -47,23 +59,23 @@ int my_countchar(const char * str, char ch) {
  *
  * Please read the README FAQ before attempting this function.
  */
-char * _my_strrchr(const char * str, int ch, int is_left) {
-	int pos = -1;
-	int match_idx = NULL;
-	while(str[++pos] != '\0') {
-		if(str[pos] == ch) {
-			match_idx = pos;
-			if(is_left == 1) {
-				break;
-			}
-		}
+char * my_strchr(const char * str, int ch)
+{
+	int ind = 0;
+	int pointer = NULL;
+	while (str[ind] != '\0')
+	{
+      if(str[ind] == ch)
+       {
+         pointer = ind;
+         break;
+       }
+      ind ++;
 	}
-	return match_idx;
-}
-char * my_strchr(const char * str, int ch) {
-	return _my_strrchr(str, ch, 1);
-}
 
+
+	return pointer;
+}
 /** 
  * Same as my_strchr(...), except it searches from the right-hand-side 
  *
@@ -74,11 +86,11 @@ char * my_strchr(const char * str, int ch) {
  *                                         // i.e., my_strrchr(str, 'z') == NULL
  * printf("'%s'\n", my_strrchr(str, '\0')); // prints "''\n" *
  */
-char * my_strrchr(const char * str, int ch) {
-	return _my_strrchr(str, ch, 0);
+char * my_strrchr(const char * str, int ch)
+{
+	return 0;
 }
-
-/** Finds the first occurance of C-string 'needle' in C-string 'haystack'
+/** Finds the first occurrence of C-string 'needle' in C-string 'haystack'
  * Return 'haystack' when 'needle' is the empty string (ie, "").
  * The terminating null bytes are not compared.
  *
@@ -89,13 +101,17 @@ char * my_strrchr(const char * str, int ch) {
  * printf("'%s'\n", my_strstr(str, "hello")); // prints "'(null)'\n"
  *                                      // i.e., my_strstr(str, "hello") == NULL
  */
-char * my_strstr(const char * haystack, const char * needle) {
+char * my_strstr(const char * haystack, const char * needle)
+{
+	return 0;
 }
-
 /**
- * Copys C-string 'src' (including the null-byte terminator) into the memory 
- * pointed to by 'dest'. The strings must not overlap, and 'dest' must be large
+ * Copies C-string 'src' (including the null-byte terminator) into the memory 
+ * pointed to by 'dest'. 
+ * The strings must not overlap, and 'dest' must be large
  * enough to contain 'src', *including* the terminating null-byte.
+ * (NOTE: Just as with the real strcpy function, these are PRECONDITIONS,
+ * NOT something your function should check for!)
  *
  * Returns 'dest'
  *
@@ -104,10 +120,12 @@ char * my_strstr(const char * haystack, const char * needle) {
  * char buffer[50];
  * printf("%s\n", my_strcpy(buffer, str)); // prints "Hello World!\n"
  */
-char * my_strcpy(char * dest, const char * src);
-
+char * my_strcpy(char * dest, const char * src)
+{
+	return 0;
+}
 /**
- * Append C-string 'src' to C-string 'dest'. A precondition is 'Dest' must be 
+ * Append C-string 'src' to C-string 'dest'. A precondition is 'dest' must be 
  * large enough to contain both 'dest' and 'src', *including* the terminating
  * null-byte.
  *
@@ -118,8 +136,10 @@ char * my_strcpy(char * dest, const char * src);
  * my_strcpy(buffer, "Hello ");
  * printf("%s\n", my_strcat(buffer, "Zippy!")); // prints "Hello Zippy!"
  */
-char * my_strcat(char * dest, const char * src);
-
+char * my_strcat(char * dest, const char * src)
+{
+	return 0;
+}
 /**
  * Returns 1 when 'ch' is a whitespace character, and 0 otherwise.
  *
@@ -139,10 +159,12 @@ char * my_strcat(char * dest, const char * src);
  * for(ch = 'A'; ch <= 'Z'; ++ch)
  *    my_isspace(ch); // always 0
  */
-int my_isspace(int ch);
-
+int my_isspace(int ch)
+{
+	return 0;
+}
 /**
- * Convert the initial portion of 'str' to an integer.
+ * Converts (only) the initial portion of 'str' to an integer.
  *
  * Implement my_atoi(str) as follows:
  * (1) Increment str to skip all white-space characters as defined by 
@@ -162,6 +184,11 @@ int my_isspace(int ch);
  * my_atoi("15th of March would be the ides."); // 15
  * my_atoi("4 months to Summer."); // 4
  * my_atoi("\n\f\t\v\r 6 white space characters handled correctly."); // 6
- * my_atoi("garbage should yield 0"); // 0
+ * my_atoi("garbage, instead of a number like 73 for example, should yield a zero"); // 0
  */
-int my_atoi(const char * str);
+int my_atoi(const char * str)
+{
+	return 0;
+}
+
+
