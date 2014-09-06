@@ -62,19 +62,21 @@ int my_countchar(const char * str, char ch)
 char * my_strchr(const char * str, int ch)
 {
 	int ind = 0;
-	int pointer = NULL;
-	while (str[ind] != '\0')
-	{
-      if(str[ind] == ch)
-       {
-         pointer = ind;
-         break;
-       }
-      ind ++;
-	}
-
-
-	return pointer;
+	int pointer = 0;
+	
+	while ( ind >= 0 )
+   {
+   	if (str[ind] == ch)
+   	{
+   	     pointer = ind ;
+   		return (char*) & str[pointer];
+   	}
+   	if (str[ind] == '\0')
+   	{
+   		return NULL;
+   	}
+   	ind ++;
+   }
 }
 /** 
  * Same as my_strchr(...), except it searches from the right-hand-side 
