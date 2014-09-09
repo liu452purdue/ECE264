@@ -182,10 +182,21 @@ char * my_strstr(const char * haystack, const char * needle)
  */
 char * my_strcpy(char * dest, const char * src)
 {
-	
+	int i = 0;
+	int j = 0;
+
+	for(i = 0; i <= 100; i++)
+	{
+		dest[i] = src[j];
+		if(src[j] == '\0')
+		{
+			break;
+		}
+		j++;
+	}
 
 
-	return 0;
+	return dest;
 }
 /**
  * Append C-string 'src' to C-string 'dest'. A precondition is 'dest' must be 
