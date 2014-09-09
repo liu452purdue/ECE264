@@ -279,7 +279,36 @@ int my_isspace(int ch)
  */
 int my_atoi(const char * str)
 {
-	return 0;
+	int ret = 0;
+	int sign = 1;
+	int i = 0;
+	
+
+	while(my_isspace(str[i]))
+	{
+		
+		i++;
+	}
+	if(str[i] == '-')
+	{
+		sign = -1;
+		i++;
+	}
+	if ('0'<=str[i] && str[i]<='9')
+	{
+		for(;'0'<=str[i] && str[i]<='9';i++)
+		{
+          ret = ret* 10;
+          ret = ret+(str[i] - 48);//the ascii code for '0' is 48
+
+		}
+		ret = sign * ret;
+		return ret;
+	}
+	else
+	{
+		return 0;
+	}
 }
 
 
