@@ -212,7 +212,18 @@ char * my_strcpy(char * dest, const char * src)
  */
 char * my_strcat(char * dest, const char * src)
 {
-	return 0;
+	int i = 0;
+	int j = 0;
+	int k = my_strlen(src) + 1;
+	
+
+	for(i = 0; i <=k-1; i++)
+	{
+		dest [i+k] = src[j];
+		
+		j++;
+	}
+	return dest;
 }
 /**
  * Returns 1 when 'ch' is a whitespace character, and 0 otherwise.
@@ -235,7 +246,14 @@ char * my_strcat(char * dest, const char * src)
  */
 int my_isspace(int ch)
 {
+	if (ch == ' ' || ch == '\f' || ch=='\n'  || ch == '\r'|| ch=='\t' || ch=='\v')
+	{
+		return 1;
+	}
+	else
+	{
 	return 0;
+    }
 }
 /**
  * Converts (only) the initial portion of 'str' to an integer.
