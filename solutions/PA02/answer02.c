@@ -184,8 +184,8 @@ char * my_strcpy(char * dest, const char * src)
 {
 	int i = 0;
 	int j = 0;
-
-	for(i = 0; i <= 100; i++)
+	int k = my_strlen(src) + 1;
+	for(i = 0; i <= k; i++)
 	{
 		dest[i] = src[j];
 		if(src[j] == '\0')
@@ -213,15 +213,14 @@ char * my_strcpy(char * dest, const char * src)
 char * my_strcat(char * dest, const char * src)
 {
 	int i = 0;
-	int j = 0;
-	int k = my_strlen(src) + 1;
+	int j = my_strlen(src) ;
+	int k = my_strlen(dest);
 	
 
-	for(i = 0; i <=k-1; i++)
+	for(i = 0; i <=j; i++)
 	{
-		dest [i+k] = src[j];
+		dest[i+k] = src[i];
 		
-		j++;
 	}
 	return dest;
 }
