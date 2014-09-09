@@ -79,6 +79,7 @@ char * my_strchr(const char * str, int ch)
    		}
    	ind ++;
    }
+   return NULL;
 }
 /** 
  * Same as my_strchr(...), except it searches from the right-hand-side 
@@ -110,7 +111,7 @@ char * my_strrchr(const char * str, int ch)
    	ind --;
    }
 	
-	//return 0;
+	return NULL;
 }
 /** Finds the first occurrence of C-string 'needle' in C-string 'haystack'
  * Return 'haystack' when 'needle' is the empty string (ie, "").
@@ -125,29 +126,44 @@ char * my_strrchr(const char * str, int ch)
  */
 char * my_strstr(const char * haystack, const char * needle)
 {
-	int i = my_strlen( haystack) ;
-	int j = my_strlen( needle);
-	int fh = haystack[0];
-	int fn = needle[0];//the first character in needle
-	int ind1 = my_strchr(haystack,fn);//find the index of the first character that match in haystack 
-									//with the first charater in needle 
+	//int i = my_strlen( haystack) ;
+	//int j = my_strlen( needle);
+	
+	int ind1 = 0;
 	int ind2 = 0;
-
-	if(j == 0)
+	
+	if(needle[0] == '\0')
 		{
-			return my_strchr(haystack,fh);
+			return (char*)haystack;
 		}
 
-    while(( ind2 <= i)&&(needle[ind2] == haystack[ind1]))
+    while(haystack[ind1] != '\0' )
     	{
-    	  if(needle[ind2] != haystack[ind1])
-    		{
-    			return NULL;
-    		}
+    	  if (haystack[ind1]==needle[0])
+    	  {
+    	  	
+    	  	for(ind2 =0;needle[ind2] != '\0'; ind2++ )
+    	  	{
+    	  		
+    	  		if (needle[ind2] !=haystack[ind1+ind2] )
+    	  		{
+    	  			
+    	  			break;/* code */
+    	  		}
+    	  		
+
+    	  		
+    	  	}
+    	  	if (needle[ind2] == '\0' )
+    	  		{
+    	  			return (char*)&haystack[ind1];/* code */
+    	  		}
+    	  	
+    	  }
+
     	  ind1++;
-    	  ind2++;
    	    }
-	return (char*)&haystack[0];
+	return NULL;
 }
 /**
  * Copies C-string 'src' (including the null-byte terminator) into the memory 
@@ -166,6 +182,9 @@ char * my_strstr(const char * haystack, const char * needle)
  */
 char * my_strcpy(char * dest, const char * src)
 {
+	
+
+
 	return 0;
 }
 /**
