@@ -188,6 +188,21 @@ char * * explode(const char * str, const char * delims, int * arrLen);
 char * implode(char * * strArr, int len, const char * glue);
 {
 
+  int ind = 0;
+  int size = 0;
+  char *string = NULL;
+
+  for (int ind = 0; ind < len; i ++)
+  {
+  	strcat_ex(&string,&size,strArr[ind]);
+
+  	if (i != (len -1))
+  	{
+  		strcat_ex(&string,&size,glue);
+  	}
+  }
+
+  return(string);
 }
 
 /**
