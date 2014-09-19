@@ -113,7 +113,56 @@ char * strcat_ex(char * * dest, int * n, const char * src)
  * Hint: read the FAQ...
  */
 
-//char * * explode(const char * str, const char * delims, int * arrLen);
+char * * explode(const char * str, const char * delims, int * arrLen);
+{
+	int ind1 = 0;
+	
+	int row = 0;
+    
+	int size = strlen(str);
+
+	int numrow = 0; 
+
+	int **arr1;
+
+	for (int ind1 = 0; ind1 < size; ind1++)
+	{
+		if (strchr(delims,str[ind1]) != NULL)
+		{
+			numrow++;
+		}
+		
+	}
+
+    char ** arr1 =  malloc(sizeof(char **)*(numrow + 1));
+
+    
+    int ind2 = 0;
+
+    int pointer = 0;
+
+
+
+    for (int row = 0; row <= size; ind2++)
+    {
+    	if (str[row] = '\0' || strchr(delims,str[row]) != NULL)
+    	{
+    		arr1[ind2] = malloc(sizeof(char*)*(row - pointer + 1));
+
+    		memcpy(arr1[ind2],&str[pointer],row - pointer);
+
+    		pointer =  row + 1;
+
+    		ind2 ++;
+    	}
+ 
+
+    }
+
+    *arrLen = numrow + 1;
+
+    return arr1;
+}
 
 /**
  * Takes an array of strings, and concatenates the elements into a single
@@ -132,7 +181,10 @@ char * strcat_ex(char * * dest, int * n, const char * src)
  * Hint: use strcat_ex in a for loop.
  */
 
-//char * implode(char * * strArr, int len, const char * glue);
+char * implode(char * * strArr, int len, const char * glue);
+{
+	
+}
 
 /**
  * Takes an array of C-strings, and sorts them alphabetically, ascending.
@@ -151,7 +203,7 @@ char * strcat_ex(char * * dest, int * n, const char * src)
  * Hint: you must _clearly_ understand the typecasts.
  */
 
-//void sortStringArray(char * * arrString, int len);
+void sortStringArray(char * * arrString, int len);
 
 /**
  * Sorts the characters in a string.
@@ -167,7 +219,7 @@ char * strcat_ex(char * * dest, int * n, const char * src)
  * Hint: you must _clearly_  understand the typecasts.
  */
 
-//void sortStringCharacters(char * str);
+void sortStringCharacters(char * str);
 
 /**
  * Safely frees all memory associated with strArr, and then strArr itself.
@@ -183,7 +235,7 @@ char * strcat_ex(char * * dest, int * n, const char * src)
  * destroyStringArray(strArr, len); // cleans memory -- no memory leaks
  * destroyStringArray(NULL, 0); // does nothing, does not crash.
  */
- 
-//void destroyStringArray(char * * strArr, int len);
+
+void destroyStringArray(char * * strArr, int len);
 
 
