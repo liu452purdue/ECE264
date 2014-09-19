@@ -1,7 +1,9 @@
-#ifndef PA03_H
-#define PA03_H 
-
 #include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+#include "answer03.h"
+
+
 
 /**
  * Append the C-string 'src' to the end of the C-string '*dest'.
@@ -26,8 +28,67 @@
  *
  * Hint: These <string.h> functions will help: strcat, strcpy, strlen.
  * Hint: Leak no memory.
- */
-char * strcat_ex(char * * dest, int * n, const char * src);
+*/
+char * strcat_ex(char * * dest, int * n, const char * src)
+ {
+ 	char *store;
+
+ 	if (src == NULL)
+ 	{
+ 		return (*dest);
+ 	}
+
+ 	else if (*dest == NULL || *n <= strlen(*dest) + strlen(src))
+ 	{
+ 		if (*dest != NULL )
+ 		{
+ 			*n = 1 + 2 * (strlen(*dest) + strlen(src));
+
+ 			store  = malloc(sizeof(char*)*(1+2 * (strlen(*dest) + strlen(src))));
+ 			
+ 			strcpy(store,*dest);
+
+ 			free(*dest);
+
+ 			*dest = store;
+
+ 			strcat(*dest,src);
+ 		}
+ 		else if(*dest == NULL)
+ 		{
+            *n = (1 +2*(strlen(src)));
+
+            store = malloc(sizeof(char*)*(1 + 2 * strlen(src)));
+
+            *dest  = store;
+
+            strcpy(*dest,src);
+ 		}
+
+ 	}
+
+ 	else
+ 	{
+ 		strcat(*dest,src);
+ 	}
+
+ 	return(*dest);
+ }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /**
  * Takes a string and splits it into an array of strings according to delimiter.
@@ -51,7 +112,8 @@ char * strcat_ex(char * * dest, int * n, const char * src);
  * Hint: this question is hard; it will help to draw out your algorithm.
  * Hint: read the FAQ...
  */
-char * * explode(const char * str, const char * delims, int * arrLen);
+
+//char * * explode(const char * str, const char * delims, int * arrLen);
 
 /**
  * Takes an array of strings, and concatenates the elements into a single
@@ -69,7 +131,8 @@ char * * explode(const char * str, const char * delims, int * arrLen);
  *
  * Hint: use strcat_ex in a for loop.
  */
-char * implode(char * * strArr, int len, const char * glue);
+
+//char * implode(char * * strArr, int len, const char * glue);
 
 /**
  * Takes an array of C-strings, and sorts them alphabetically, ascending.
@@ -87,7 +150,8 @@ char * implode(char * * strArr, int len, const char * glue);
  * Hint: use the <stdlib.h> function "qsort"
  * Hint: you must _clearly_ understand the typecasts.
  */
-void sortStringArray(char * * arrString, int len);
+
+//void sortStringArray(char * * arrString, int len);
 
 /**
  * Sorts the characters in a string.
@@ -102,7 +166,8 @@ void sortStringArray(char * * arrString, int len);
  * Hint: use the <stdlib.h> function "qsort"
  * Hint: you must _clearly_  understand the typecasts.
  */
-void sortStringCharacters(char * str);
+
+//void sortStringCharacters(char * str);
 
 /**
  * Safely frees all memory associated with strArr, and then strArr itself.
@@ -118,6 +183,7 @@ void sortStringCharacters(char * str);
  * destroyStringArray(strArr, len); // cleans memory -- no memory leaks
  * destroyStringArray(NULL, 0); // does nothing, does not crash.
  */
-void destroyStringArray(char * * strArr, int len);
+ 
+//void destroyStringArray(char * * strArr, int len);
 
-#endif
+
