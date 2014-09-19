@@ -142,25 +142,28 @@ char * * explode(const char * str, const char * delims, int * arrLen)
 
 
 
-    for (row = 0; row <= size; row++)
+    for(row =0; row <= size; row ++)
     {
     	if (str[row] =='\0' || strchr(delims,str[row]) != NULL)
     	{
+        
     		arr1[ind2] =(char *) malloc(sizeof(char*)*(row - pointer + 1));
 
     		memcpy(arr1[ind2],&str[pointer],row - pointer);
 
-    		pointer =  row + 1;
+    		
 
     		arr1[ind2][row - pointer] = '\0';
 
+        pointer =  row + 1;
+
     		ind2 ++;
     	}
- 
+    
 
     }
 
-   *arrlen = numrow + 1; 
+   *arrLen = numrow + 1; 
 
 
 
@@ -229,14 +232,24 @@ void sortStringArray(char * * arrString, int len)
 
   int compare(const void *a, const void *b)
 {
-  return strcmp((char *)a ,(char *)b);
+  return strcmp(*(char **)a ,*(char **)b);
 }
 
 
 	qsort(arrString,len,sizeof(char*),compare);
 }
-
-
+/**
+int main(){
+  char ** arrString = malloc(sizeof(char *)*2);
+  arrString[0] = "abcd";
+  arrString[1] = "bcda";
+  //char ** arrString = {"abcd" , "bcda"};
+  sortStringArray(arrString , 2);
+  printf("%s\n%s" , arrString[0]);
+  printf("%s\n%s" , arrString[1]);
+  return 0;
+}
+*/
 /**
  * Sorts the characters in a string.
  *
@@ -289,8 +302,11 @@ void destroyStringArray(char * * strArr, int len)
 
   for (ii = 0; ii < len; ii++ )
    {
-     free(strArr[ii]);
+     
+       free(strArr[ii]);
+     
    }
+   free(strArr);
 }
 
 
