@@ -223,7 +223,14 @@ char * implode(char * * strArr, int len, const char * glue);
  */
 
 void sortStringArray(char * * arrString, int len);
+  {
+  	qsort(arrString,len,sizeof(arrString[0]),compare);
+  }
 
+ int compare(const void *a, const void *b)
+ {
+ 	return strcmp(*a - *b);
+ }
 /**
  * Sorts the characters in a string.
  *
