@@ -153,13 +153,17 @@ char * * explode(const char * str, const char * delims, int * arrLen);
 
     		pointer =  row + 1;
 
+    		arr1[ind2][row - pointer] = '\0';
+
     		ind2 ++;
     	}
  
 
     }
 
-    *arrLen = numrow + 1;
+    free(**arr1);
+
+
 
     return arr1;
 }
@@ -183,7 +187,7 @@ char * * explode(const char * str, const char * delims, int * arrLen);
 
 char * implode(char * * strArr, int len, const char * glue);
 {
-	
+
 }
 
 /**
