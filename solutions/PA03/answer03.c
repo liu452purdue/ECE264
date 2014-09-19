@@ -113,7 +113,7 @@ char * strcat_ex(char * * dest, int * n, const char * src)
  * Hint: read the FAQ...
  */
 
-char * * explode(const char * str, const char * delims, int * arrLen);
+char * * explode(const char * str, const char * delims, int * arrLen)
 {
 	int ind1 = 0;
 	
@@ -123,9 +123,8 @@ char * * explode(const char * str, const char * delims, int * arrLen);
 
 	int numrow = 0; 
 
-	int **arr1;
 
-	for (int ind1 = 0; ind1 < size; ind1++)
+	for (ind1 = 0; ind1 < size; ind1++)
 	{
 		if (strchr(delims,str[ind1]) != NULL)
 		{
@@ -161,7 +160,7 @@ char * * explode(const char * str, const char * delims, int * arrLen);
 
     }
 
-    
+   *arrlen = numrow + 1; 
 
 
 
@@ -185,14 +184,15 @@ char * * explode(const char * str, const char * delims, int * arrLen);
  * Hint: use strcat_ex in a for loop.
  */
 
-char * implode(char * * strArr, int len, const char * glue);
+char * implode(char * * strArr, int len, const char * glue)
 {
 
   int ind = 0;
   int size = 0;
   char *string = NULL;
 
-  for (int ind = 0; ind < len-1; ind ++)
+
+  for (ind = 0; ind < len-1; ind ++)
   {
   	strcat_ex(&string,&size,strArr[ind]);
 
@@ -223,15 +223,20 @@ char * implode(char * * strArr, int len, const char * glue);
  * Hint: you must _clearly_ understand the typecasts.
  */
 
-void sortStringArray(char * * arrString, int len);
+void sortStringArray(char * * arrString, int len)
 {
+
+
+  int compare(const void *a, const void *b)
+{
+  return strcmp((char *)a ,(char *)b);
+}
+
+
 	qsort(arrString,len,sizeof(char*),compare);
 }
 
-int compare(const void *a, const void *b)
-{
-	return strcmp((char *)a ,(char *)b);
-}
+
 /**
  * Sorts the characters in a string.
  *
@@ -246,17 +251,18 @@ int compare(const void *a, const void *b)
  * Hint: you must _clearly_  understand the typecasts.
  */
 
-void sortStringCharacters(char * str);
+void sortStringCharacters(char * str)
 {
+
+int compare2(const void *a, const void *b)
+{
+  return (a - b);
+}
   int length = strlen(str);
 
     qsort(str,length,sizeof(char),compare2);
 }
 
-int compare2(const void *a, const void *b)
-{
-  return ((char)a - (char)b);
-}
 /**
  * Safely frees all memory associated with strArr, and then strArr itself.
  * Passing NULL as the first parameter has no effect.
@@ -272,7 +278,7 @@ int compare2(const void *a, const void *b)
  * destroyStringArray(NULL, 0); // does nothing, does not crash.
  */
 
-void destroyStringArray(char * * strArr, int len);
+void destroyStringArray(char * * strArr, int len)
 {
   int ii = 0;
   //int jj = 0;
@@ -280,7 +286,7 @@ void destroyStringArray(char * * strArr, int len);
   {
     return;
   }
-  
+
   for (ii = 0; ii < len; ii++ )
    {
      free(strArr[ii]);
