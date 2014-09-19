@@ -134,7 +134,7 @@ char * * explode(const char * str, const char * delims, int * arrLen);
 		
 	}
 
-    char ** arr1 =  malloc(sizeof(char **)*(numrow + 1));
+    char ** arr1 =  (char **)malloc(sizeof(char **)*(numrow + 1));
 
     
     int ind2 = 0;
@@ -143,11 +143,11 @@ char * * explode(const char * str, const char * delims, int * arrLen);
 
 
 
-    for (int row = 0; row <= size; ind2++)
+    for (row = 0; row <= size; row++)
     {
-    	if (str[row] = '\0' || strchr(delims,str[row]) != NULL)
+    	if (str[row] =='\0' || strchr(delims,str[row]) != NULL)
     	{
-    		arr1[ind2] = malloc(sizeof(char*)*(row - pointer + 1));
+    		arr1[ind2] =(char *) malloc(sizeof(char*)*(row - pointer + 1));
 
     		memcpy(arr1[ind2],&str[pointer],row - pointer);
 
@@ -161,7 +161,7 @@ char * * explode(const char * str, const char * delims, int * arrLen);
 
     }
 
-    free(**arr1);
+    
 
 
 
@@ -192,15 +192,16 @@ char * implode(char * * strArr, int len, const char * glue);
   int size = 0;
   char *string = NULL;
 
-  for (int ind = 0; ind < len; i ++)
+  for (int ind = 0; ind < len-1; ind ++)
   {
   	strcat_ex(&string,&size,strArr[ind]);
 
-  	if (i != (len -1))
-  	{
+  	
   		strcat_ex(&string,&size,glue);
-  	}
+  	
   }
+
+  strcat_ex(&string,&size,strArr[ind]);
 
   return(string);
 }
@@ -223,14 +224,14 @@ char * implode(char * * strArr, int len, const char * glue);
  */
 
 void sortStringArray(char * * arrString, int len);
-  {
-  	qsort(arrString,len,sizeof(arrString[0]),compare);
-  }
+{
+	qsort(arrString,len,sizeof(char*),compare);
+}
 
- int compare(const void *a, const void *b)
- {
- 	return strcmp(*a - *b);
- }
+int compare(const void *a, const void *b)
+{
+	return strcmp((char *)a ,(char *)b);
+}
 /**
  * Sorts the characters in a string.
  *
@@ -246,7 +247,16 @@ void sortStringArray(char * * arrString, int len);
  */
 
 void sortStringCharacters(char * str);
+{
+  int length = strlen(str);
 
+    qsort(str,length,sizeof(char),compare2);
+}
+
+int compare2(const void *a, const void *b)
+{
+  return ((char)a - (char)b);
+}
 /**
  * Safely frees all memory associated with strArr, and then strArr itself.
  * Passing NULL as the first parameter has no effect.
@@ -263,5 +273,18 @@ void sortStringCharacters(char * str);
  */
 
 void destroyStringArray(char * * strArr, int len);
+{
+  int ii = 0;
+  //int jj = 0;
+  if (strArr == NULL)
+  {
+    return;
+  }
+  
+  for (ii = 0; ii < len; ii++ )
+   {
+     free(strArr[ii]);
+   }
+}
 
 
