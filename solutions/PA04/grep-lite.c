@@ -104,9 +104,10 @@ for (i = 1; i < argc ; i ++)
 }
 
  int found = 0;
- for (i = 1; !feof(stdin); ++i)
+ for (i = 1; ; ++i)
  {
-   fgets(buffer,2000,stdin);
+   if(fgets(buffer,2000,stdin) == NULL) {break;}
+
 
    if (strstr(buffer,argv[argc-1]) != NULL)
    {
@@ -130,7 +131,10 @@ for (i = 1; i < argc ; i ++)
   else 
    {
    	 found = 1;
-
+      if(qt == 1)
+     {
+      return 0;
+     }
    	 if(inmatch == 1)
    	 {
    	 	if (number == 1)
