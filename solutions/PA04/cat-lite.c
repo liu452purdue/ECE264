@@ -3,24 +3,14 @@
 #include <string.h>
 
 
-#define TRUE 1
-#define FALSE 0
-
-
 int main(int argc, char const *argv[])
 {
     FILE *file;
-  
     int i = 0;
-
     int j = 0;
-
-
     char in;
     char Content;
-    
     char help[6];
-
     strcpy (help,"--help");
       
     for (i = 1; i < argc ; i ++)
@@ -56,8 +46,7 @@ int main(int argc, char const *argv[])
        
       if (*argv[j] == '-')
        {
-         
-         
+           
          do
          {
            in = fgetc(stdin);
@@ -75,7 +64,6 @@ int main(int argc, char const *argv[])
              printf( "cat cannot open %s\n", argv[j] );
              return EXIT_FAILURE;
             } 
-
  
           else
           {  
@@ -83,9 +71,7 @@ int main(int argc, char const *argv[])
             do
             {
                Content = fgetc (file);
-                //printf("%c", Content);
-
-                 
+                //printf("%c", Content);  
       
             if(Content != EOF)
               {
@@ -93,7 +79,7 @@ int main(int argc, char const *argv[])
               }
             }while(Content != EOF);
             
-            //printf("\n");
+            
           fclose (file);
 
           }      
