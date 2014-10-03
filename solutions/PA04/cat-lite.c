@@ -15,8 +15,8 @@ int main(int argc, char const *argv[])
 
     int j = 0;
 
-    int in;
 
+    char in;
     char Content;
     
     char help[6];
@@ -60,9 +60,9 @@ int main(int argc, char const *argv[])
          
          do
          {
-           
-           fputc(fgetc(stdin), stdout);
-         } while(fgetc(stdin) !='\n');
+           in = fgetc(stdin);
+           fputc(in, stdout);
+         } while(in !='\n');
 
         }
        
@@ -104,6 +104,10 @@ int main(int argc, char const *argv[])
     
     return EXIT_SUCCESS;
   }
+
+  return EXIT_SUCCESS;
+
+
 }
 
 
