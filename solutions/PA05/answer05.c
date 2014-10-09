@@ -146,7 +146,7 @@ void f2(int n, int*arr, int ind)
 {
  int i = 0;
  int j = 0;
- int incflag=0;
+ int Decflag=0;
    //printf("%d = ", n);
  if (n == 0)
  {
@@ -154,13 +154,13 @@ void f2(int n, int*arr, int ind)
   { 
     if (arr[i] >= arr[i-1])
     {
-      incflag =1;
+      Decflag =1;
         //printf("%s\n","incflag = 1" );
     }
      // printf("\t %d %d %d\n",arr[i],arr[i-1],(arr[i] <= arr[i-1]) );
   }
 
-  if (incflag == 0)
+  if (Decflag == 0)
   {
 
    printf("= ");
@@ -209,7 +209,64 @@ void partitionDecreasing(int value)
  * Hint: for odd numbers, (value % 2 != 0)
  * Hint: look at file: expected/partitionOdd.output
  */
-void partitionOdd(int value);
+
+ void f3(int n, int*arr, int ind)
+{
+ int i = 0;
+ int j = 0;
+ int oddflag=1;
+   //printf("%d = ", n);
+ if (n == 0)
+ {
+  for (i = 0; i <= ind ; ++i)
+  { 
+    if ((arr[i] %2)==0)
+    {
+      oddflag =0;
+        //printf("%s\n","incflag = 1" );
+    }
+     // printf("\t %d %d %d\n",arr[i],arr[i-1],(arr[i] <= arr[i-1]) );
+  }
+
+  if (oddflag == 1)
+  {
+
+   printf("= ");
+   for (i = 0; i < ind -1; ++i)
+   {
+    printf("%d + ",arr[i] ); 
+  }
+  printf("%d\n", arr[ind -1] );
+     // printf("\t %d %d %d\n",arr[i],arr[i-1],(arr[i] <= arr[i-1]) );
+      //return;
+
+}
+}
+for (j = 1; j <= n; ++j)
+{
+
+  arr[ind] = j;
+  f3(n-j,arr,ind +1);
+}
+
+return;
+}
+void partitionOdd(int value)
+{
+  int *arr;
+  arr = malloc(sizeof(int)*value);
+  int ind = 0;
+  f3(value, arr, ind);
+  free(arr);
+  return;
+}
+int main(int argc, char const *argv[])
+{
+ // partitionAll(4);
+  partitionOdd(8);
+  return 0;
+}
+
 
 /**
  * Prints all partitions comprised solely of even numbers.
