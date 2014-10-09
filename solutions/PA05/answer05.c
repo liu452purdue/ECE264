@@ -142,6 +142,48 @@ void partitionIncreasing(int value)
  * See: note on partitionIncreasing(...)
  * Hint: look at file: expected/partitionDecreasing.output
  */
+void f2(int n, int*arr, int ind)
+{
+ int i = 0;
+ int j = 0;
+ int incflag=0;
+   //printf("%d = ", n);
+ if (n == 0)
+ {
+  for (i = 1; i < ind ; ++i)
+  { 
+    if (arr[i] >= arr[i-1])
+    {
+      incflag =1;
+        //printf("%s\n","incflag = 1" );
+    }
+     // printf("\t %d %d %d\n",arr[i],arr[i-1],(arr[i] <= arr[i-1]) );
+  }
+
+  if (incflag == 0)
+  {
+
+   printf("= ");
+   for (i = 0; i < ind -1; ++i)
+   {
+    printf("%d + ",arr[i] ); 
+  }
+  printf("%d\n", arr[ind -1] );
+     // printf("\t %d %d %d\n",arr[i],arr[i-1],(arr[i] <= arr[i-1]) );
+      //return;
+
+}
+}
+for (j = 1; j <= n; ++j)
+{
+
+  arr[ind] = j;
+  f2(n-j,arr,ind +1);
+}
+
+return;
+}
+
 void partitionDecreasing(int value)
 {
   int *arr;
