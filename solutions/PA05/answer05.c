@@ -1,8 +1,6 @@
-/**
- * Do not modify this file
- */
-#ifndef PA05_H
-#define PA05_H
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
 
 /**
  * Prints all the partitions of a positive integer value.
@@ -17,8 +15,41 @@
  * Note: Order does not matter, and neither does white-space. 
  * Hint: look at file: expected/partitionAll.output
  */
-void partitionAll(int value);
+void f(int n, int*arr, int ind)
+  {
+   int i = 0;
+   int j = 0;
+   //printf("%d = ", n);
+   if (n == 0)
+   {
+   printf("=");
+     for (i = 0; i < ind -1; ++i)
+     {
+        printf("%d+",arr[i] ); 
+     }
+      printf("%d\n", arr[ind -1] );
+      //return;
+   }
+     for (j = 1; j <= n; ++j)
+     {
+        
+        arr[ind] = j;
+        f(n-j,arr,ind +1);
+     }
+   
+   return;
+  }
 
+void partitionAll(int value)
+{
+  int *arr;
+  arr = malloc(sizeof(int)*value);
+  int ind = 0;
+  f(value, arr, ind);
+  free(arr);
+  return;
+
+}
 /**
  * Prints all partitions that have strictly increasing values.
  *
@@ -40,7 +71,60 @@ void partitionAll(int value);
  *
  * Hint: look at file: expected/partitionIncreasing.output
  */
-void partitionIncreasing(int value);
+void f1(int n, int*arr, int ind)
+  {
+   int i = 0;
+   int j = 0;
+   int incflag = 0;
+   //printf("%d = ", n);
+   if (n == 0)
+   {
+    for (i = 1; i < ind ; ++i)
+    { 
+      if (arr[i] <= arr[i-1])
+      {
+        incflag =1;
+        //printf("%s\n","incflag = 1" );
+      }
+     // printf("\t %d %d %d\n",arr[i],arr[i-1],(arr[i] <= arr[i-1]) );
+    }
+
+  if (incflag == 0)
+  {
+   
+   printf("= ");
+     for (i = 0; i < ind -1; ++i)
+     {
+        printf("%d + ",arr[i] ); 
+     }
+      printf("%d\n", arr[ind -1] );
+     // printf("\t %d %d %d\n",arr[i],arr[i-1],(arr[i] <= arr[i-1]) );
+      //return;
+    
+    }
+   }
+     for (j = 1; j <= n; ++j)
+     {
+        
+        arr[ind] = j;
+        f1(n-j,arr,ind +1);
+     }
+   
+   return;
+  }
+
+
+
+void partitionIncreasing(int value)
+{
+  int *arr;
+  arr = malloc(sizeof(int)*value);
+  int ind = 0;
+  f1(value, arr, ind);
+  free(arr);
+  return;
+}
+
 
 /**
  * Prints all partitions that have strictly decreasing values.
@@ -58,7 +142,15 @@ void partitionIncreasing(int value);
  * See: note on partitionIncreasing(...)
  * Hint: look at file: expected/partitionDecreasing.output
  */
-void partitionDecreasing(int value);
+void partitionDecreasing(int value)
+{
+  int *arr;
+  arr = malloc(sizeof(int)*value);
+  int ind = 0;
+  f2(value, arr, ind);
+  free(arr);
+  return;
+}
 
 /**
  * Prints all partitions comprised solely of odd numbers.
@@ -128,4 +220,4 @@ void partitionOddAndEven(int value);
  * Hint: look at file: expected/partitionPrime.output
  */
 void partitionPrime(int value);
-#endif
+
