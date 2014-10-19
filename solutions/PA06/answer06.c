@@ -36,6 +36,27 @@ void buffer(char direction)
 	}
 }
 
+char turnback(char direction)
+{
+    if(direction=='W')
+    {
+        return 'E';
+    }
+    else if(direction=='E')
+    {
+        return 'W';
+    }
+    else if(direction=='N')
+    {
+        return 'S';
+    }
+    else if(direction=='S')
+    {
+        return 'N';
+    }
+    return '?';
+}
+
 void travelrecursion(char **maze, int w, int h, int x, int y, int prx, int pry)
 {
 	/*x = current position in x - axis
@@ -51,7 +72,9 @@ void travelrecursion(char **maze, int w, int h, int x, int y, int prx, int pry)
     nty = y;
     if((w > ntx) && (ntx >= 0) && (h > nty) && (nty >= 0) &&!((ntx==prx) && (nty==pry)) && (maze[nty][ntx]==' '))		
     {
-    	travelrecursion(maze, w, h, x, y, prx, pry);
+    	buffer(direction);
+        travelrecursion(maze, w, h, x, y, prx, pry);
+        buffer(turnback(direction));
     }
     
     direction = 'W';
@@ -60,7 +83,9 @@ void travelrecursion(char **maze, int w, int h, int x, int y, int prx, int pry)
  	if((w > ntx) && (ntx >= 0) && (h > nty) && (nty >= 0) &&!((ntx==prx) && (nty==pry)) && (maze[nty][ntx]==' '))		
     {
 
+        buffer(direction);
         travelrecursion(maze, w, h, x, y, prx, pry);
+        buffer(turnback(direction));
     }
 
     direction = 'S';
@@ -69,7 +94,9 @@ void travelrecursion(char **maze, int w, int h, int x, int y, int prx, int pry)
  	if((w > ntx) && (ntx >= 0) && (h > nty) && (nty >= 0) &&!((ntx==prx) && (nty==pry)) && (maze[nty][ntx]==' '))		
     {
     
+        buffer(direction);
         travelrecursion(maze, w, h, x, y, prx, pry);
+        buffer(turnback(direction));
     }
 
     direction = 'N';
@@ -77,11 +104,16 @@ void travelrecursion(char **maze, int w, int h, int x, int y, int prx, int pry)
     nty = y-1;
  	if((w > ntx) && (ntx >= 0) && (h > nty) && (nty >= 0) &&!((ntx==prx) && (nty==pry)) && (maze[nty][ntx]==' '))		
     {
+        buffer(direction);
         travelrecursion(maze, w, h, x, y, prx, pry);
+        buffer(turnback(direction));
     }
   }  
 
-void print_directions(char** maze, int w, int h);
+
+
+
+void print_directions(char** maze, int w, int h)
 {
 	int start;
 	start = startpoint(maze,w,h);
