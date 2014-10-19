@@ -80,23 +80,23 @@ void travelrecursion(char **maze, int w, int h, int x, int y, int prx, int pry)
     direction = 'E';
     ntx = x + 1;
     nty = y;
-    travelcheck(maze ,w ,h ,x ,y ,prx ,pry ,ntx ,nty ,direction)
+    travelcheck(maze ,w ,h ,x ,y ,prx ,pry ,ntx ,nty ,direction);
     
     
     direction = 'W';
     ntx = x -1;
     nty = y;
- 	
+ 	 travelcheck(maze ,w ,h ,x ,y ,prx ,pry ,ntx ,nty ,direction);
 
     direction = 'S';
     ntx = x;
     nty = y +1;
- 	
+ 	 travelcheck(maze ,w ,h ,x ,y ,prx ,pry ,ntx ,nty ,direction);
 
     direction = 'N';
     ntx = x;
     nty = y-1;
- 	
+ 	 travelcheck(maze ,w ,h ,x ,y ,prx ,pry ,ntx ,nty ,direction);
   }  
 
 
