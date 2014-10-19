@@ -81,7 +81,7 @@ void travelrecursion(char **maze, int w, int h, int x, int y, int prx, int pry)
     }
   }  
 
-void print_directions(char **maze, int w, int h)
+void print_directions(char** maze, int w, int h);
 {
 	int start;
 	start = startpoint(maze,w,h);
@@ -92,7 +92,7 @@ void print_directions(char **maze, int w, int h)
 	}
 	else
 	{
-		recursiveTravel(maze , w , h , start , 0 , -1 , -1);
+		travelrecursion(maze , w , h , start , 0 , -1 , -1);
 		buffer(' ');
  	}
 
