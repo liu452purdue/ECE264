@@ -34,3 +34,14 @@ void buffer(char dirction)
 		dirlen = 1;
 	}
 }
+
+void travelrecursion(char **maze， int w, int h, int x, int y, int prx, int pry)
+{
+	/*x = current position in x - axis
+	  y = current position in y - axis
+	  prx = previous postion in x
+	  pry = previous postion in y*/
+    int ntx;
+    int nty;
+    char dirction;
+}
