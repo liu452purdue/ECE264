@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-int _DEBUG = 0;
+
 
 int startpoint(char **maze, int w, int h)
 {
@@ -61,18 +61,6 @@ char turnback(char direction)
     return '?';
 }
 
-void printMaze(char ** maze , int h , int x , int y)
-{
-    int i;
-    fgetc(stdin);
-    maze[y][x] = 'o';
-   
-    printf("\e[1;1H\e[2J");
-    for(i=0;i<h;i++){
-        printf("%s\n", maze[i]);
-    }
-    maze[y][x] = ' ';
-}
 
 
 void travelcheck(char **maze , int w , int h ,int x , int y , int prx , int pry ,int ntx , int nty , char direction)
@@ -80,17 +68,10 @@ void travelcheck(char **maze , int w , int h ,int x , int y , int prx , int pry 
     if((w > ntx) && (ntx >= 0) && (h > nty) && (nty >= 0) &&!((ntx==prx) && (nty==pry)) && (maze[nty][ntx]==SPACE))     
     {
         buffer(direction);
-        if(_DEBUG)
-        {
-            printMaze(maze , w , ntx , nty);
-        }
+      
         travelrecursion(maze, w, h, ntx, nty, x, y);
         buffer(turnback(direction));
-        if(_DEBUG)
-        {
-            printMaze(maze , w , ntx , nty);
-
-        }
+        
     }
 }
 
