@@ -16,3 +16,21 @@ int startpoint(char **maze, int w, int h)
     }
     return -1;
 }   
+
+void buffer(char dirction)
+{
+	static char dirbuff = 'S'; // record the dirction to go
+	static int dirlen = 0; // record how many steps have been done in this dirction
+
+	if (dirbuff == dirction)
+	{
+
+		dirlen++;
+	}
+	else
+	{
+		printf("%c %d\n",dirbuff, dirlen );
+		dirbuff = dirction;
+		dirlen = 1;
+	}
+}
