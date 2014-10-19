@@ -57,6 +57,16 @@ char turnback(char direction)
     return '?';
 }
 
+void travelcheck(char **maze , int w , int h ,int x , int y , int prx , int pry ,int ntx , int nty , char direction)
+{
+    if((w > ntx) && (ntx >= 0) && (h > nty) && (nty >= 0) &&!((ntx==prx) && (nty==pry)) && (maze[nty][ntx]==SPACE))     
+    {
+        buffer(direction);
+        travelrecursion(maze, w, h, x, y, prx, pry);
+        buffer(turnback(direction));
+    }
+}
+
 void travelrecursion(char **maze, int w, int h, int x, int y, int prx, int pry)
 {
 	/*x = current position in x - axis
@@ -70,44 +80,23 @@ void travelrecursion(char **maze, int w, int h, int x, int y, int prx, int pry)
     direction = 'E';
     ntx = x + 1;
     nty = y;
-    if((w > ntx) && (ntx >= 0) && (h > nty) && (nty >= 0) &&!((ntx==prx) && (nty==pry)) && (maze[nty][ntx]==' '))		
-    {
-    	buffer(direction);
-        travelrecursion(maze, w, h, x, y, prx, pry);
-        buffer(turnback(direction));
-    }
+    travelcheck(maze ,w ,h ,x ,y ,prx ,pry ,ntx ,nty ,direction)
+    
     
     direction = 'W';
     ntx = x -1;
     nty = y;
- 	if((w > ntx) && (ntx >= 0) && (h > nty) && (nty >= 0) &&!((ntx==prx) && (nty==pry)) && (maze[nty][ntx]==' '))		
-    {
-
-        buffer(direction);
-        travelrecursion(maze, w, h, x, y, prx, pry);
-        buffer(turnback(direction));
-    }
+ 	
 
     direction = 'S';
     ntx = x;
     nty = y +1;
- 	if((w > ntx) && (ntx >= 0) && (h > nty) && (nty >= 0) &&!((ntx==prx) && (nty==pry)) && (maze[nty][ntx]==' '))		
-    {
-    
-        buffer(direction);
-        travelrecursion(maze, w, h, x, y, prx, pry);
-        buffer(turnback(direction));
-    }
+ 	
 
     direction = 'N';
     ntx = x;
     nty = y-1;
- 	if((w > ntx) && (ntx >= 0) && (h > nty) && (nty >= 0) &&!((ntx==prx) && (nty==pry)) && (maze[nty][ntx]==' '))		
-    {
-        buffer(direction);
-        travelrecursion(maze, w, h, x, y, prx, pry);
-        buffer(turnback(direction));
-    }
+ 	
   }  
 
 
